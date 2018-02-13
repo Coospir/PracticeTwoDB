@@ -308,6 +308,32 @@ void editInfo(football_match *&first){
 
 
 int main() {
-
-
+    football_match *first = NULL, *last = NULL;
+    lFile(first, last);
+    bool exit = false;
+    last = first;
+    while(not exit){
+        cout << "\nFOOTBALL MATCH DATABASE\n";
+        cout << "Select action \n";
+        cout << "1) Add new record\n";
+        cout << "2) Show records\n";
+        cout << "3) Edit record\n";
+        cout << "4) Delete record\n";
+        cout << "5) Exit\n";
+        int buf;
+        if((buf = cin.get()) != EOF){
+            cin.ignore(std::numeric_limits<streamsize>::max(), '\n');
+            if(buf != '\n'){
+                switch(buf){
+                    case '1': cout << "ADD NEW RECORD\n"; addInfo(first, last); break;
+                    case '2': cout << "SHOW RECORDS\n"; showInfo(first); break;
+                    case '3': cout << "EDIT RECORD\n"; editInfo(first); break;
+                    case '4': cout << "DELETE RECORD\n"; deleteInfo(first, last); break;
+                    case '5': cout << "EXIT\n"; exit = true; break;
+                    default: cout << "ERROR\n"; break;
+                }
+            }
+        }
+    }
+    delete(first);
 }
