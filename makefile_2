@@ -1,0 +1,17 @@
+binary: main.o lib_filework.a lib_date.so
+	g++ -o binary main.o -L. -lfootbal_db -Wl,-rpath,.
+
+main.o: main.cpp
+	g++ -c main.cpp
+
+lib_date.so: date.o
+	g++ -shared -o lib_date.so date.o
+
+date.o: date.cpp
+	g++ -c -fPIC date.cpp
+
+lib_filework.a: file_work.o
+	ar cr lib_filework.a file_work.o
+
+file_work.o: file_work.cpp
+	g++ -c file_work.cpp

@@ -84,12 +84,15 @@ void lFile(football_match *&first, football_match *&last){
         flag = true;
         ifstream in("matches.txt");
         while((!in.eof())&&(flag)) {
+
             if(f = new football_match) {
                 int i, len;
                 char chr;
 
                 f->first_team = "";
                 in.read((char *)&len, sizeof(len));
+                //TODO: должна быть проверка на eof после первого read()
+
                 if(!in){flag = false;}
 
                 if((!in.eof())&&(flag)){
